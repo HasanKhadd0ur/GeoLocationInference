@@ -1,0 +1,67 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+lib/
+lib64/
+include/
+var/
+*.log
+*.pot
+*.pyc
+*.swp
+*.bak
+*.swo
+
+# Flask specific
+instance/
+*.db
+*.sqlite3
+*.db-journal
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+venv.bak/
+env.bak/
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Ignore dotenv files
+.env
+.env.*
+
+# Coverage reports
+.coverage
+*.cover
+coverage.xml
+nosetests.xml
+test_*.xml
+
+# Miscellaneous
+*.bak
+*.tmp
