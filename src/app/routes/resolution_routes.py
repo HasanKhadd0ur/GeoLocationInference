@@ -1,16 +1,26 @@
 from flask import Blueprint, request, jsonify
-from app.services.resolution_service import geocode_text, detect_common_location
+from app.core.factory.services_factory import get_location_resolver_service
 
-resolution_bp = Blueprint("resolution", __name__)
+resolution_bp = Blueprint('resolution', __name__)
+resolution_service =get_location_resolver_service("nominatim")
 
-@resolution_bp.route("/geocode", methods=["POST"])
+@resolution_bp.route('/extract-event-location', methods=['POST'])
+def extract_event_location():
+    data = request.get_json()
+    messages = data
+
+    if not messages:
+        return jsonify({"error": "Missing 'text' in request body"}), 400
+
+    location = resolution_service.extract_event_location(messages)
+    return jsonify(location)
+
+@resolution_bp.route('/geocode', methods=['GET'])
 def geocode():
-    text = request.json.get("text", "")
-    result = geocode_text(text)
-    return jsonify(result)
+    location = request.args.get('location')
+    
+    if not location:
+        return jsonify({"error": "Missing 'location' query parameter"}), 400
 
-@resolution_bp.route("/common-location", methods=["POST"])
-def common_location():
-    texts = request.json.get("texts", [])
-    result = detect_common_location(texts)
-    return jsonify(result)
+    coords = resolution_service.geocode(location)
+    return jsonify(coords)
