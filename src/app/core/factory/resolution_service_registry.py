@@ -1,7 +1,6 @@
 from typing import Type, Dict
-from app.core.services.base.recognition_service_base import IRecognitionService
-from app.core.services.base.resolution_service_base import IResolutionService
-
+from app.core.services.location.base.recognition_service_base import IRecognitionService
+from app.core.services.location.base.resolution_service_base import IResolutionService
 
 class ServicesRegistry:
     _recognizers: Dict[str, Type[IResolutionService]] = {}
