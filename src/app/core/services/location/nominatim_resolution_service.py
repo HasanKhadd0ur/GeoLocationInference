@@ -1,8 +1,7 @@
 from time import sleep
 import requests
-
 from app.core.configs.base_config import BaseConfig
-from app.core.services.base.resolution_service_base import IResolutionService
+from app.core.services.location.base.resolution_service_base import IResolutionService
 
 class NominatimResolutionService(IResolutionService):
     def __init__(self, config: BaseConfig):

@@ -7,4 +7,5 @@ from app.core.services.location.nominatim_resolution_service import NominatimRes
 
 ServicesRegistry.register_location_recognizer("llm", LLMLocationRecognitionService)
 ServicesRegistry.register_location_recognizer("ner", NERLocationRecognitionService)
+ServicesRegistry.register_location_recognizer("dummy", NERLocationRecognitionService)
 ServicesRegistry.register_location_resolver("nominatim", NominatimResolutionService)
