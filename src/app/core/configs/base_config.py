@@ -11,3 +11,6 @@ class BaseConfig(ABC):
         pass
     def get_geocoding_service_url(self)-> str: 
         pass
+    def get_api_key(self)->str:
+        pass
+    

@@ -1,8 +1,10 @@
 
 from app.core.factory.resolution_service_registry import ServicesRegistry
-from app.core.services.ner_recognition_service import NERLocationRecognitionService
-from app.core.services.nominatim_resolution_service import NominatimResolutionService
+from app.core.services.location.llm_location_recognition_service import LLMLocationRecognitionService
+from app.core.services.location.ner_recognition_service import NERLocationRecognitionService
+from app.core.services.location.nominatim_resolution_service import NominatimResolutionService
 
 
+ServicesRegistry.register_location_recognizer("llm", LLMLocationRecognitionService)
 ServicesRegistry.register_location_recognizer("ner", NERLocationRecognitionService)
 ServicesRegistry.register_location_resolver("nominatim", NominatimResolutionService)
