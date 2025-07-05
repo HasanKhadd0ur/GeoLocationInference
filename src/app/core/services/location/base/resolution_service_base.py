@@ -1,10 +1,8 @@
 from abc import ABC, abstractmethod
 
+from app.core.models.location import Location
+
 class IResolutionService(ABC):
     @abstractmethod
-    def extract_event_location(self, text: str) -> str:
-        pass
-
-    @abstractmethod
-    def geocode(self, location: str) -> dict:
+    def geocode(self, location: str) -> Location:
         pass
