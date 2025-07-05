@@ -42,3 +42,7 @@ class LLMLocationRecognitionService(IRecognitionService):
 
         except Exception as e:
             raise RuntimeError(f"LLM location extraction failed: {e}")
+
+    def extract_event_location(self, messages: List[str]) -> str:
+            # Replace this later with LLM or rule-based extractor
+            return "Jableh, Syria"

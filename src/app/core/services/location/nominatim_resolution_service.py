@@ -1,17 +1,16 @@
 from time import sleep
 import requests
 from app.core.configs.base_config import BaseConfig
+from app.core.factory.services_factory import get_location_recognizer_service
+from app.core.models.location import Location
 from app.core.services.location.base.resolution_service_base import IResolutionService
+
 
 class NominatimResolutionService(IResolutionService):
     def __init__(self, config: BaseConfig):
         self.config = config
 
-    def extract_event_location(self, text: str) -> str:
-        # Replace this later with LLM or rule-based extractor
-        return "Jableh, Syria"
-
-    def geocode(self, location: str) -> dict:
+    def geocode(self, location: str) -> Location:
         try:
             url = self.config.get_geocoding_service_url()
             params = {
@@ -28,13 +27,10 @@ class NominatimResolutionService(IResolutionService):
             results = response.json()
 
             if not results:
-                return {"error": "Location not found"}
+                # return {"error": "Location not found"}
+                return Location()
 
             result = results[0]
-            return {
-                "latitude": float(result["lat"]),
-                "longitude": float(result["lon"])
-            }
-
+            return Location( latitude= float(result["lat"]) , longitude=float(result["lon"]))
         except requests.RequestException as e:
             return {"error": str(e)}
