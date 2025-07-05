@@ -2,9 +2,9 @@
 def test_extract_event_location(client):
     # Route: POST /extract-event-location in resolution_bp
     messages = [
-        {"text": "Explosion in Damascus"},
-        {"text": "Clashes in Aleppo"},
-        {"text": "Fire in Homs"}
+        {"text": "قوات سوريا الديمقراطية تمنع بدء أعمال صيانة جسري البوكمال/ الباغوز – والعشارة درنج ، بعد وصول المعدات اللوجستية اللازمة لذلك من دون أي توضيح أو بيان رسمي .."},
+        {"text": "صورة من داخل منزل في القصير بعد دخول دورية للتفتيش فيه !!"},
+        {"text": "بعض الأنفاق التي حفرتها قسد بمدينة الرقة"}
     ]
     response = client.post("/resolution/extract-event-location", json=messages)
     assert response.status_code == 200
