@@ -13,7 +13,7 @@ class NERLocationRecognitionService(IRecognitionService):
         except Exception as e:
             raise RuntimeError(f"Failed to load Stanza NER pipeline: {e}")
 
-    def extract_message_location_mentions(self, text: str) -> str:
+    def extract_message_location(self, text: str) -> str:
         try:
             doc = self.nlp(text)
             locations = []

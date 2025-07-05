@@ -31,6 +31,6 @@ class NominatimResolutionService(IResolutionService):
                 return Location()
 
             result = results[0]
-            return Location( Latitude= float(result["lat"]) , Longitude=float(result["lon"]))
+            return Location( latitude= float(result["lat"]) , longitude=float(result["lon"]))
         except requests.RequestException as e:
             return {"error": str(e)}
