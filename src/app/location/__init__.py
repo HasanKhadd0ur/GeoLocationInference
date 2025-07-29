@@ -1,0 +1,12 @@
+
+from app.location.registry.resolution_service_registry import ServicesRegistry
+from app.location.recognition.dummy_recognition_service import DummyLocationRecognitionService
+from app.location.recognition.llm_location_recognition_service import LLMLocationRecognitionService
+from app.location.recognition.ner_recognition_service import NERLocationRecognitionService
+from app.location.resolution.nominatim_resolution_service import NominatimResolutionService
+
+
+ServicesRegistry.register_location_recognizer("llm", LLMLocationRecognitionService)
+ServicesRegistry.register_location_recognizer("ner", NERLocationRecognitionService)
+ServicesRegistry.register_location_recognizer("dummy", DummyLocationRecognitionService)
+ServicesRegistry.register_location_resolver("nominatim", NominatimResolutionService)

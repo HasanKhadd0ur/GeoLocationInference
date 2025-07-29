@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
-from app.core.factory.services_factory import get_location_resolver_service
+from app.location.factory.services_factory import get_location_resolver_service
 
 resolution_bp = Blueprint('resolution', __name__)
-resolution_service =get_location_resolver_service("nominatim")
+resolution_service =get_location_resolver_service()
 
 @resolution_bp.route('/geocode', methods=['GET'])
 def geocode():

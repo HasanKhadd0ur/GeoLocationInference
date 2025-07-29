@@ -1,7 +1,8 @@
 from typing import List
+from flask import jsonify
 import stanza
 from app.core.configs.base_config import BaseConfig
-from app.core.services.location.base.recognition_service_base import IRecognitionService
+from app.location.base.recognition_service_base import IRecognitionService
 
 
 class NERLocationRecognitionService(IRecognitionService):
@@ -23,7 +24,7 @@ class NERLocationRecognitionService(IRecognitionService):
                     if entity.type == 'LOC':
                         locations.append(entity.text)
 
-            return  locations[:1]  if len(locations) > 0 else  "سوريا"  # Return only the first location
+            return ', '.join(locations) if locations else "سوريا"
         except Exception as e:
             raise RuntimeError(f"NER location extraction failed: {e}")
 

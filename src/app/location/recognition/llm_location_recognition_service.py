@@ -3,7 +3,7 @@ import re
 from typing import List
 from app.core.configs.base_config import BaseConfig
 import google.generativeai as genai
-from app.core.services.location.base.recognition_service_base import IRecognitionService
+from app.location.base.recognition_service_base import IRecognitionService
 from app.core.services.prompt.prompt_service import PromptService
 
 class LLMLocationRecognitionService(IRecognitionService):
