@@ -1,9 +1,8 @@
 from flask import Blueprint, request, jsonify
 
-from app.core.factory.services_factory import get_location_recognizer_service
+from app.location.factory.services_factory import get_location_recognizer_service
 
 recognition_bp = Blueprint('recognition', __name__)
-location_service = get_location_recognizer_service("ner")
 
 @recognition_bp.route('/extract-message-location', methods=['POST'])
 def extract_message_location():
@@ -12,6 +11,7 @@ def extract_message_location():
 
     if not text:
         return jsonify({"error": "Missing 'text' in request body"}), 400
+    location_service = get_location_recognizer_service()
 
     try:
         locations = location_service.extract_message_location(text)
@@ -22,6 +22,8 @@ def extract_message_location():
 @recognition_bp.route('/extract-event-location', methods=['POST'])
 def extract_event_location():
     messages = request.get_json()
+
+    location_service = get_location_recognizer_service()
 
     location = location_service.extract_event_location(messages)
 

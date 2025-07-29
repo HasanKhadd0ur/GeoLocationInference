@@ -15,6 +15,5 @@ def test_extract_event_location(client):
     response = client.post("/recognition/extract-event-location", json=messages)
     assert response.status_code == 200
     data = response.get_json()
-    print(data)
 
     assert data is not None
