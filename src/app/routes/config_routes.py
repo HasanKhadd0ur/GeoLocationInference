@@ -1,5 +1,5 @@
-# app/api/admin_config_routes.py
 from flask import Blueprint, request, jsonify
+from app.location.registry.resolution_service_registry import ServicesRegistry
 
 from app.location.factory.location_service_config import LocationServiceConfigManager
 
@@ -24,3 +24,23 @@ def update_location_service_config():
         "recognizer_key": config.get_recognizer_key(),
         "resolver_key": config.get_resolver_key()
     }), 200
+
+
+@config_bp.route("/location-services/recognizers", methods=["GET"])
+def get_available_recognizers():
+    recognizers = list(ServicesRegistry._recognizers.keys())
+    return jsonify({"recognizers": recognizers})
+
+@config_bp.route("/location-services/resolvers", methods=["GET"])
+def get_available_resolvers():
+    resolvers = list(ServicesRegistry._resolvers.keys())
+    return jsonify({"resolvers": resolvers})
+
+
+@config_bp.route("/location-services/config", methods=["GET"])
+def get_current_location_service_config():
+    config = LocationServiceConfigManager()
+    return jsonify({
+        "recognizer_key": config.get_recognizer_key(),
+        "resolver_key": config.get_resolver_key()
+    })
